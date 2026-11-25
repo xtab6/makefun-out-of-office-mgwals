@@ -18,6 +18,9 @@ def main():
     assert 1 <= len(ENTRY) <= 159, "entry line must be 1-159 chars"
     assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be a single line"
     assert ENTRY.strip(), "entry must not be only whitespace"
+    # The grader mounts the output dir, but creating it if absent costs
+    # nothing and keeps a local run working too.
+    os.makedirs(out_dir, exist_ok=True)
     for name in os.listdir(out_dir):
         path = os.path.join(out_dir, name)
         if os.path.isfile(path) or os.path.islink(path):
